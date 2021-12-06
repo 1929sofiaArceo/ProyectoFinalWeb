@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>PawBook</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        #filtros{
+            color: black;
+            text-align: center;
+            width: 80vw;
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+            background-image: url(https://thumbs.dreamstime.com/b/banner-hide-happy-dog-puppy-winking-one-eye-smiling-colored-blue-backgorund-closed-eyes-201151108.jpg);
+            background-size: contain;
+        }
+        .display{
+            display: inline;
+            font-family: monospace;
+            margin:auto;
+            left: auto;
+        }
+        .iconCard{
+            transition-duration: 1.5s;
+            transition-timing-function: ease-in-out;
+            transition-property: all;
+        }
+        .iconCard:hover{
+            transform: rotate(360deg);
+        }
+        .iconSearch{
+            animation: skew 2s infinite;
+            transform: skew(20deg);
+        }
+        @keyframes skew {
+            0% {transform: skewX(20deg);}
+            100% {transform: skewX(-20deg);}
+        }
+        .button5{
+            border-radius: 50%;
+            background-color: lightblue;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .button5:hover{
+            background-color: cadetblue;
+        }
+        .card{
+            margin: 10px;
+            width: fit-content;
+        }
+        #searchButton{
+            width: 300px;
+            
+        }
+        .cardsMascotas{
+            text-align: center;
+        }
+        .btn-group{
+            padding: 10px;
+        }
+        .modal-title{
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body style="background-image: url(https://thumbs.dreamstime.com/b/polca-dot-paws-background-de-paw-white-silver-metallic-foil-del-perro-66964941.jpg);">
+    
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" id="navbar">
+        <a class="navbar-brand" href="/principal">PawBook
+            <span class="sr-only">(current)</span>
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home">
+                    Mascotas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pet">Rescatistas</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-people"></i>Perfil</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#login">Ingresar</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#registro">Registarse</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class= "container">
+        <div class="row">
+            <div id="filtros">
+                <br>
+                <h1 style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; text-align: center;">
+                <img src="" width="50px" class="iconSearch">
+                BUSCA A TU MASCOTA IDEAL<br></h1>
+                <br>
+                <h4 class="display">Tamaño: </h4>
+                <select name="size" id="size">
+                    <option value="Todos" selected>Todos</option>
+                    <option value="Chico">Chico</option>
+                    <option value="Mediano">Mediano</option>
+                    <option value="Grande">Grande</option>
+                </select>
+                <h4 class="display">Raza: </h4>
+                <select name="raza" id="raza">
+                    <option value="Todos" selected>Todos</option>
+                    <option value="labrador">Labrador</option>
+                    <option value="pug">Pug</option>
+                    <option value="pastor alemán">Pastor Alemán</option>
+                    <option value="pastor belga">Pastor Belga</option>
+                    <option value="chihuahua">Chihuahua</option>
+                    <option value="bulldog">BullDog</option>
+                    <option value="bulldog">Salchicha</option>
+                    <option value="poodle">Poodle</option>
+                    <option value="boxer">boxer</option>
+                    <option value="pomerania">Pomerania</option>
+                    <option value="doberman">Doberman</option>
+                    <option value="border collie">Border Collie</option>
+                </select>
+                <h4 class="display">Sexo: </h4>
+                <select name="sex" id="sex">
+                    <option value="Todos" selected>Todos</option>
+                    <option value="M">Macho</option>
+                    <option value="H">Hembra</option>
+                </select>
+                <h4 class="display"> Edad: </h4>
+                <select name="edad" id="edad">
+                    <option value="Todos" selected>Todos</option>
+                    <option value="0-2">0-2</option>
+                    <option value="2-4">2-4</option>
+                    <option value="4-6">4-6</option>
+                    <option value="6-8">6-8</option>
+                    <option value="8+">8+</option>
+                </select>
+                <br><br>
+                <button type="submit" onclick = "find()" class="btn btn-info btn-lg mt-3" id="searchButton">Buscar</button>
+                <button type="submit" onclick = "dropFilters()" class="btn btn-light btn-lg mt-3" id="deleteFilters">Borrar filtros</button>
+                <br><br><br><br><br><br><br>
+            </div>
+        </div>
+        <div id="cardsMascotas">
+        </div>
+        <div id="mainPetPrueba">
+
+        </div>
+
+        <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+              <button type="button" class="btn btn-secondary">1</button>
+              <button type="button" class="btn btn-secondary">2</button>
+              <button type="button" class="btn btn-secondary">3</button>
+              <button type="button" class="btn btn-secondary">4</button>
+            </div>
+        </div>
+
+    </div>
+
+        <!-- Modal-->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ingresar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="container-fluid">
+                            <div class="form-group">
+                                <label for="">Correo</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                        <img src="https://cdns.iconmonstr.com/wp-content/assets/preview/2012/240/iconmonstr-pencil-14.png" style="width: 25px;">
+                                        </span>
+                                    </div>
+                                    <input type="text" class="col-10 form-control" name="" id="correoLogin" aria-describedby="helpId"
+                                        placeholder="Ingresa tu correo" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            <img src="https://www.kindpng.com/picc/m/475-4751731_key-password-hd-png-download.png" style="width: 25px;">
+                                        </span>
+                                    </div>
+                                    <input type="password" class="col-10 form-control" name="" id="contrasenaLogin"
+                                        aria-describedby="helpId" placeholder="Ingresa tu contraseña" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="controls">
+                                    <button type="button" class="btn btn-success btn-block" data-dismiss="modal">Login</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 control">
+                                    <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; text-align: right;">
+                                        No tienes cuenta!
+                                        <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#registro">
+                                            Registrate aquí
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="registro" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registrar usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" name="" id="nombre" class="form-control" placeholder="Nombre(s)"
+                                    aria-describedby="helpId" required>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" name="" id="apellidos" class="form-control" placeholder="Apellidos"
+                                    aria-describedby="helpId" required>
+                            </div>
+                        </div>
+
+                        <input type="mail" name="" id="correo" class="form-control mt-3" placeholder="Tu correo"
+                            aria-describedby="helpId" required>
+
+                        <input type="text" name="phone" id="phone" class="form-control mt-3" placeholder="Tu teléfono"
+                            aria-describedby="helpId" required>
+
+                        <input type="date" name="fecha" id="fechaRegistro" class="form-control mt-3" placeholder="Fecha Registro"
+                            aria-describedby="helpId" required>
+                        <input type="password" name="" id="contrasena" class="form-control mt-3" placeholder="Contraseña"
+                            aria-describedby="helpId" required>
+
+                        <input type="password" name="" id="confirmContrasena" class="form-control mt-3"
+                            placeholder="Confirmar contraseña" aria-describedby="helpId" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
+
+                        <button type="submit" class="btn btn-success btn-lg mt-3 btn-block">Registrarse</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Modal -->
+     <div class="modal fade" id="notMatch" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                    <img src="https://cdn-icons-png.flaticon.com/512/91/91527.png" style="width: 100px;"> 
+                    <hr>
+                    LO SIENTO NO HAY MASCOTAS DISPONIBLES CON ESAS CARACTERÍSTICAS</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <script src="FRONTEND/js/utils.js"></script>
+    <script src="FRONTEND/js/mascotas.js"></script>
+    <script src="FRONTEND/js/Rescatistas.js"></script>
+    <script src="FRONTEND/js/ajax_handler.js"></script>
+    <script src="FRONTEND/js/mascotas_utils.js"></script>
+    <script src="FRONTEND/js/rescatistas_utils.js"></script>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
